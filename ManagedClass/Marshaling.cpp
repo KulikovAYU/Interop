@@ -9,9 +9,9 @@ namespace msclr
 	namespace interop
 	{
 		template<>
-		inline ManagedEmp^ marshal_as<ManagedEmp^, NativeEmp>(const NativeEmp& from)
+		inline ManagedClass::ManagedEmp^ marshal_as<ManagedClass::ManagedEmp^, NativeEmp>(const NativeEmp& from)
 		{
-			ManagedEmp^ toValue = gcnew  ManagedEmp;
+			ManagedClass::ManagedEmp^ toValue = gcnew ManagedClass::ManagedEmp;
 			toValue->name = marshal_as<System::String^>(from.name);
 			toValue->adress = marshal_as<System::String^>(from.adress);
 			toValue->zipCode = from.zipCode;
@@ -19,13 +19,13 @@ namespace msclr
 		}
 
 		template<>
-		ref class context_node<NativeEmp*, ManagedEmp^> : public context_node_base
+		ref class context_node<NativeEmp*, ManagedClass::ManagedEmp^> : public context_node_base
 		{
 		private:
 			NativeEmp* toPtr;
 			marshal_context context;
 		public:
-			context_node(NativeEmp*& toObject, ManagedEmp^ fromObject)
+			context_node(NativeEmp*& toObject, ManagedClass::ManagedEmp^ fromObject)
 			{
 				// Conversion logic starts here
 				toPtr = NULL;

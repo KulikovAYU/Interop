@@ -7,5 +7,7 @@ struct _declspec(dllexport) NativeEmp
 
 	NativeEmp();
 	~NativeEmp();
+
+	void ReplaceNames();
 };
 

@@ -1,0 +1,2 @@
+﻿Для нормаольной отладки все файлы сборок должны находиться в однома каталоге.
+Для отладки https://docs.microsoft.com/ru-ru/visualstudio/debugger/how-to-debug-in-mixed-mode?view=vs-2019
