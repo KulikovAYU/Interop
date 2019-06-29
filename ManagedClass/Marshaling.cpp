@@ -30,16 +30,13 @@ namespace msclr
 				// Conversion logic starts here
 				toPtr = NULL;
 
-				const  char* nativeName;
-				const  char* nativeAddress;
-
 				// Convert the name from String^ to const char*.
 				System::String^ tempValue = fromObject->name;
-				nativeName = context.marshal_as<const  char*>(tempValue);
+				const  char*  nativeName = context.marshal_as<const  char*>(tempValue);
 
 				// Convert the address from String^ to const char*.
 				tempValue = fromObject->adress;
-				nativeAddress = context.marshal_as<const  char*>(tempValue);
+				const  char*  nativeAddress = context.marshal_as<const  char*>(tempValue);
 
 				toPtr = new NativeEmp();
 				toPtr->name = const_cast<char*>(nativeName);

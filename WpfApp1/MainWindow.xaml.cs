@@ -38,6 +38,10 @@ namespace WpfApp1
             me.adress = EmpAdress.Text;
             me.zipCode = Int32.Parse(EmpZipCode.Text);
             me.ConvertToNative();
+
+            EmpNameRes.Text = me.name;
+            EmpAdressRes.Text = me.adress;
+            EmpZipCodeRes.Text = me.zipCode.ToString();
         }
     }
 }

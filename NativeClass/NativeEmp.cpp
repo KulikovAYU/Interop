@@ -11,11 +11,11 @@ NativeEmp::~NativeEmp()
 {
 }
 
-void NativeEmp::ReplaceNames()
+void NativeEmp::ChangeValues()
 {
 	char* pBuf = name;
 	name = adress;
 	adress = pBuf;
-	int n = 1;
+	zipCode += 100;
 
 }
