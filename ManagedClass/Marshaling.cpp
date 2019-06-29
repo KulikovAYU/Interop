@@ -2,10 +2,12 @@
 #include "Marshaling.h"
 #include "ManagedEmp.h"
 #include "../NativeClass/NativeEmp.h"
+#include "ExtendedManagedEmp.h"
+#include "../NativeClass/ExtendedNativeEmp.h"
 
 namespace msclr
 {
-	//Преобразование в неуправляемого кода в управляемый код
+	//Преобразование неуправляемого кода в управляемый код
 	namespace interop
 	{
 		template<>
@@ -18,6 +20,7 @@ namespace msclr
 			return toValue;
 		}
 
+		//Преобразование управляемый кода в неуправляемый код
 		template<>
 		ref class context_node<NativeEmp*, ManagedClass::ManagedEmp^> : public context_node_base
 		{
@@ -42,6 +45,63 @@ namespace msclr
 				toPtr->name = const_cast<char*>(nativeName);
 				toPtr->adress = const_cast<char*>(nativeAddress);
 				toPtr->zipCode = fromObject->zipCode;
+
+				toObject = toPtr;
+			}
+			~context_node()
+			{
+				this->!context_node();
+			}
+		protected:
+			!context_node()
+			{
+				// When the context is deleted, it will free the memory
+				// allocated for toPtr->name and toPtr->address, so toPtr
+				// is the only memory that needs to be freed.
+				if (toPtr != NULL) {
+					delete toPtr;
+					toPtr = NULL;
+				}
+			}
+		};
+
+		//Преобразование неуправляемого кода в управляемый код
+		template<>
+		inline ManagedClass::ITestManagedInterface^ marshal_as<ManagedClass::ITestManagedInterface^, ITestNativeInterface>(const ITestNativeInterface& from)
+		{
+			ManagedClass::ITestManagedInterface^ toValue = gcnew ManagedClass::ExtendedManagedEmp;
+			toValue->Name = marshal_as<System::String^>(from.GetName());
+			toValue->Adress = marshal_as<System::String^>(from.GetAdress());
+			toValue->ZipCode = from.GetZipCode();
+			return toValue;
+		}
+
+
+		//Преобразование управляемый кода в неуправляемый код
+		template<>
+		ref class context_node<ITestNativeInterface*, ManagedClass::ExtendedManagedEmp^> : public context_node_base
+		{
+		private:
+			ITestNativeInterface* toPtr;
+			marshal_context context;
+		public:
+			context_node(ITestNativeInterface*& toObject, ManagedClass::ExtendedManagedEmp^ fromObject)
+			{
+				// Conversion logic starts here
+				toPtr = NULL;
+
+				// Convert the name from String^ to const char*.
+				System::String^ tempValue = fromObject->Name;
+				const  char* nativeName = context.marshal_as<const  char*>(tempValue);
+
+				// Convert the address from String^ to const char*.
+				tempValue = fromObject->Adress;
+				const  char* nativeAddress = context.marshal_as<const  char*>(tempValue);
+
+				toPtr = new ExtendedNativeEmp();
+				toPtr->SetName(const_cast<char*>(nativeName));
+				toPtr->SetAdress(const_cast<char*>(nativeAddress));
+				toPtr->SetZipCode(fromObject->ZipCode);
 
 				toObject = toPtr;
 			}

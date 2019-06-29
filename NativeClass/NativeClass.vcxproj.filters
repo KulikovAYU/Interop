@@ -24,6 +24,9 @@
     <ClInclude Include="NativeEmp.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="ExtendedNativeEmp.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +39,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="NativeEmp.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedNativeEmp.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

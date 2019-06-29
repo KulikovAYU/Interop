@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExtendedManagedEmp.h" />
     <ClInclude Include="ManagedClass.h" />
     <ClInclude Include="ManagedEmp.h" />
     <ClInclude Include="Marshaling.h" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ExtendedEmp.cpp" />
     <ClCompile Include="ManagedClass.cpp" />
     <ClCompile Include="ManagedEmp.cpp" />
     <ClCompile Include="Marshaling.cpp" />

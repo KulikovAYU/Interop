@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ManagedClass;
 using ManagedEmp = ManagedClass.ManagedEmp;
 
 namespace WpfApp1
@@ -42,6 +43,20 @@ namespace WpfApp1
             EmpNameRes.Text = me.name;
             EmpAdressRes.Text = me.adress;
             EmpZipCodeRes.Text = me.zipCode.ToString();
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+
+            ManagedClass.ITestManagedInterface me = new ExtendedManagedEmp();
+            me.Name = EmpName.Text;
+            me.Adress = EmpAdress.Text;
+            me.ZipCode = Int32.Parse(EmpZipCode.Text);
+            me.ConvertToNative();
+
+            EmpNameRes.Text = me.Name;
+            EmpAdressRes.Text = me.Adress;
+            EmpZipCodeRes.Text = me.ZipCode.ToString();
         }
     }
 }
