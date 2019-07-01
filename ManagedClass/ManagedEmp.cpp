@@ -28,3 +28,5 @@ void ManagedClass::ManagedEmp::ConvertToNative()
 		         result->name, result->adress, result->zipCode);
 	}*/
 }
+
+

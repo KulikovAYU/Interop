@@ -54,9 +54,23 @@ namespace WpfApp1
             me.ZipCode = Int32.Parse(EmpZipCode.Text);
             me.ConvertToNative();
 
+            // List<ManagedClass.ITestManagedInterface> emp = new List<ITestManagedInterface>(new List<ExtendedManagedEmp>()){new ExtendedManagedEmp()};
+
             EmpNameRes.Text = me.Name;
             EmpAdressRes.Text = me.Adress;
             EmpZipCodeRes.Text = me.ZipCode.ToString();
+
+
+            //преобразование массивов
+            List<ExtendedManagedEmp> employees = new List<ExtendedManagedEmp>
+            {
+                new ExtendedManagedEmp(){Adress = "Тестовый адрес1",Name = "Тестовое имя1", ZipCode = 0},
+                new ExtendedManagedEmp(){Adress = "Тестовый адрес2",Name = "Тестовое имя2", ZipCode = 1},
+                new ExtendedManagedEmp(){Adress = "Тестовый адрес3",Name = "Тестовое имя3", ZipCode = 2},
+                new ExtendedManagedEmp(){Adress = "Тестовый адрес4",Name = "Тестовое имя4", ZipCode = 3},
+            };
+
+            StaticConverters.ConvertArrToNativeAndBack(employees.ToArray());
         }
     }
 }

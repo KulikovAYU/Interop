@@ -1,4 +1,6 @@
 #pragma once
+#include "ExtendedManagedEmp.h"
+
 namespace ManagedClass
 {
 	public ref struct ManagedEmp
@@ -8,6 +10,8 @@ namespace ManagedClass
 		int zipCode;
 
 		void ConvertToNative();
+
+		
 	};
 }
 
